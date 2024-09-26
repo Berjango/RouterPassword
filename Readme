@@ -1,1 +1,6 @@
-This will eventually contain a Python program to automatically change the router password for the purpose of getting rid of hackers.Currently not yet ready for the first commit
+This will eventually contain a Python program to automatically change the router password for the purpose of getting rid of hackers.
+
+Please note this is written for my router ,my OS and my particular setup but may still be useful to others if modified.
+
+
+First commit not yet working,just logs into the router.Not sure what the conventions are with git.
