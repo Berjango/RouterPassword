@@ -79,7 +79,7 @@ if len(password)<4 or len(password)>50:
 
 
 subprocess.run(["firefox","http://"+routerip])
-time.sleep(5)
+time.sleep(10)
 	
 loop=0
 while 1:
@@ -87,13 +87,28 @@ while 1:
 	newpassword=pseudorandompassword(passwordlength)
 	print( "New password is ",newpassword)
 	
-	keyboard.type('optus')
+	keyboard.type('optus')			#log in to router here
 	keyboard.type('\t')
 	keyboard.type(password)
 	keyboard.type('\t')
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
+	time.sleep(10)
+	print("Logged in to router.")
   
+	keyboard.type('\t\t\t')			#navigate to modem settings
+	keyboard.press(Key.enter)
+	keyboard.release(Key.enter)
+	
+	time.sleep(10)
+	print("In modem settings.")
+	
+	for i in range(15):				#navigate to password section
+		keyboard.type('\t')
+	keyboard.press(Key.enter)
+	keyboard.release(Key.enter)
+	print("In password section.")
+	time.sleep(10)
 
 	p.open("w").write(newpassword)
 	loop+=1
