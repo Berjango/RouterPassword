@@ -33,7 +33,9 @@
 import	random
 import time
 from pathlib import Path
-import subprocess
+import os
+from subprocess import Popen
+
 
 from pynput.keyboard import Key, Controller
 
@@ -77,8 +79,9 @@ if len(password)<4 or len(password)>50:
 	except:
 		password="whatever345"
 
+devnull = open(os.devnull, 'wb')
+Popen(['firefox', "http://"+routerip], stdout=devnull, stderr=devnull)
 
-subprocess.run(["firefox","http://"+routerip])
 time.sleep(10)
 	
 loop=0
@@ -96,7 +99,7 @@ while 1:
 	time.sleep(10)
 	print("Logged in to router.")
   
-	keyboard.type('\t\t\t')			#navigate to modem settings
+	keyboard.type('\t\t\t\t\t')			#navigate to modem settings
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
 	
