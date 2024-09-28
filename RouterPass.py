@@ -64,8 +64,7 @@ print("This program is specific to my router/modem and may not be useful for any
 lp=Path(lastipfile)
 try:
 	candidateip=lp.open().readline()
-except:		
-	print("here")
+except:	
 	candidateip=defaultip
 
 
