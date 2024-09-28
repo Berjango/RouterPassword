@@ -135,5 +135,6 @@ while 1:
 	loop+=1
 	print("Password changed ",loop," times")
 	time.sleep(delay)
+	password=newpassword
 
 
