@@ -43,19 +43,27 @@ from pynput.keyboard import Key, Controller
 keyboard=Controller()
 defaultip="192.168.0.1"
 
-delay=300
+delay=30
 
 passwfilename="routerpassword.txt"
 lastipfile="lastip.txt"
 
 passwordlength=20
 
-def pseudorandompassword (plength):
-	""" returns a very simple psuedo random password of roughly specified length """
-	ret="HBR1.com"
-	for i in range(plength):
-		ret+=chr(ord("a")+random.randint(1,26))
-	return(ret)
+
+def	presstab(repeats):
+	"""simulates a tab keypress with small delays """
+	for i in range(repeats):
+		time.sleep(0.1)
+		keyboard.type('\t')
+		time.sleep(0.1)
+
+def	pseudorandompassword (plength):
+		""" returns a very simple psuedo random password of roughly specified length """
+		ret="HBR1.com"
+		for i in range(plength):
+			ret+=chr(ord("a")+random.randint(1,26))
+		return(ret)
 
 
 print("This program is specific to my router/modem and may not be useful for anyone else.It is not advisable to run this unless you already have a very secure system.Do not run if you have valuable data connected to the internet.This will make hackers angry if they are targetting you  and they could disable your system causing you to lose data.  BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!!")
@@ -63,7 +71,7 @@ print("This program is specific to my router/modem and may not be useful for any
 
 lp=Path(lastipfile)
 try:
-	candidateip=lp.open().readline().strip()
+	candidateip=lp.open().readline()
 except:	
 	candidateip=defaultip
 
@@ -81,12 +89,14 @@ lp=Path(lastipfile)
 p=Path(passwfilename)
 if len(password)<4 or len(password)>50:
 	try:
-		password=p.open().readline().strip()
+		with p.open() as f:
+			password=f.readline()
+			p.close()
 	except:
 		password="whatever345"
 
 devnull = open(os.devnull, 'wb')
-Popen(['firefox', "http://"+routerip], stdout=devnull, stderr=devnull)
+Popen(['firefox', "http://"+routerip,"-safe-mode"], stdout=devnull, stderr=devnull)
 
 time.sleep(30)
 	
@@ -97,35 +107,34 @@ while 1:
 	print( "New password is ",newpassword)
 	
 	keyboard.type('optus')			#log in to router here
-	keyboard.type('\t')
+	presstab(1)
 	keyboard.type(password)
-	keyboard.type('\t')
+	presstab(1)
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
 	time.sleep(10)
 	print("Logged in to router.")
   
-	keyboard.type('\t\t\t\t\t')			#navigate to modem settings
+	presstab(5)				#Navigate to modem settings
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
 	
 	time.sleep(10)
 	print("In modem settings.")
-	for i in range(26):				#navigate to password section
-		keyboard.type('\t')
-		time.sleep(0.2)
-	keyboard.press(Key.enter)
+
+	presstab(26)
+	keyboard.press(Key.enter)		#Navigate to password section
 	keyboard.release(Key.enter)
 	print("In password section.")
 	time.sleep(10)
 
-	keyboard.type('\t')			#Input new passwords
+	presstab(1)			#Input new passwords
 	keyboard.type(password)
-	keyboard.type('\t')
+	presstab(1)
 	keyboard.type(newpassword)
-	keyboard.type('\t')
+	presstab(1)
 	keyboard.type(newpassword)
-	keyboard.type('\t\t\t')
+	presstab(3)
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
 	
@@ -135,6 +144,5 @@ while 1:
 	loop+=1
 	print("Password changed ",loop," times")
 	time.sleep(delay)
-	password=newpassword
 
 
