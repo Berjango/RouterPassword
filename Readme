@@ -1,4 +1,4 @@
-This will eventually contain a Python program to automatically change the router password for the purpose of getting rid of hackers.
+Contains a Python program to automatically change the router password for the purpose of getting rid of hackers.
 
 Please note, this is written for my router (Optus sagemcom) and a debian based live linux system but may still be useful to others if modified.
 
@@ -10,4 +10,4 @@ WARNING !! It is potentially dangerous to change your router password as if you 
 you have valuable data connected to the internet or you have a system that cannot easily be restored.BE VERY CAREFUL!!!!!!!
 
 CURRENT DEVELOPMENT STATUS :
-Not yet working,just logs into the router and navigates a bit.Not sure what the conventions are with git.
+First working version,very rough.
