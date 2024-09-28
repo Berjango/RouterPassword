@@ -63,7 +63,7 @@ print("This program is specific to my router/modem and may not be useful for any
 
 lp=Path(lastipfile)
 try:
-	candidateip=lp.open().readline()
+	candidateip=lp.open().readline().strip()
 except:	
 	candidateip=defaultip
 
@@ -81,16 +81,14 @@ lp=Path(lastipfile)
 p=Path(passwfilename)
 if len(password)<4 or len(password)>50:
 	try:
-		with p.open() as f:
-			password=f.readline()
-			p.close()
+		password=p.open().readline().strip()
 	except:
 		password="whatever345"
 
 devnull = open(os.devnull, 'wb')
 Popen(['firefox', "http://"+routerip], stdout=devnull, stderr=devnull)
 
-time.sleep(10)
+time.sleep(30)
 	
 loop=0
 while 1:
