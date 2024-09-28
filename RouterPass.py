@@ -46,6 +46,7 @@ defaultip="192.168.0.1"
 delay=300
 
 passwfilename="routerpassword.txt"
+lastipfile="lastip.txt"
 
 passwordlength=20
 
@@ -60,16 +61,24 @@ def pseudorandompassword (plength):
 print("This program is specific to my router/modem and may not be useful for anyone else.It is not advisable to run this unless you already have a very secure system.Do not run if you have valuable data connected to the internet.This will make hackers angry if they are targetting you  and they could disable your system causing you to lose data.  BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!!")
 
 
+lp=Path(lastipfile)
+try:
+	candidateip=lp.open().readline()
+except:		
+	print("here")
+	candidateip=defaultip
 
 
-
-routerip=input("Enter router ip address,press enter for default.  ")
+print("Last router ip = ",candidateip)
+routerip=input("Enter new router ip address,press enter for last used router ip.  ")
 if len(routerip)<4 or len(routerip)>15:
-	routerip=defaultip
+	routerip=candidateip
+else:
+	lp.open("w").write(routerip)
 	
 password=input("Enter password or press enter to use a saved one.  ")
 
-
+lp=Path(lastipfile)
 p=Path(passwfilename)
 if len(password)<4 or len(password)>50:
 	try:
@@ -105,17 +114,29 @@ while 1:
 	
 	time.sleep(10)
 	print("In modem settings.")
-	
-	for i in range(15):				#navigate to password section
+	for i in range(26):				#navigate to password section
 		keyboard.type('\t')
+		time.sleep(0.2)
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
 	print("In password section.")
 	time.sleep(10)
 
+	keyboard.type('\t')			#Input new passwords
+	keyboard.type(password)
+	keyboard.type('\t')
+	keyboard.type(newpassword)
+	keyboard.type('\t')
+	keyboard.type(newpassword)
+	keyboard.type('\t\t\t')
+	keyboard.press(Key.enter)
+	keyboard.release(Key.enter)
+	
+	print("Changed password to ",newpassword)
+
 	p.open("w").write(newpassword)
 	loop+=1
-	print("Loop = ",loop)
+	print("Password changed ",loop," times")
 	time.sleep(delay)
 
 
