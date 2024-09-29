@@ -54,9 +54,9 @@ passwordlength=20
 def	presstab(repeats):
 	"""simulates a tab keypress with small delays """
 	for i in range(repeats):
-		time.sleep(0.1)
+		time.sleep(0.3)
 		keyboard.type('\t')
-		time.sleep(0.1)
+		time.sleep(0.3)
 
 def	pseudorandompassword (plength):
 		""" returns a very simple psuedo random password of roughly specified length """
@@ -71,7 +71,7 @@ print("This program is specific to my router/modem and may not be useful for any
 
 lp=Path(lastipfile)
 try:
-	candidateip=lp.open().readline()
+	candidateip=lp.open().readline().strip()
 except:	
 	candidateip=defaultip
 
@@ -85,13 +85,11 @@ else:
 	
 password=input("Enter password or press enter to use a saved one.  ")
 
-lp=Path(lastipfile)
 p=Path(passwfilename)
 if len(password)<4 or len(password)>50:
 	try:
-		with p.open() as f:
-			password=f.readline()
-			p.close()
+		password=p.open().readline().strip()
+
 	except:
 		password="whatever345"
 
@@ -142,6 +140,7 @@ while 1:
 
 	p.open("w").write(newpassword)
 	loop+=1
+	password=newpassword
 	print("Password changed ",loop," times")
 	time.sleep(delay)
 
