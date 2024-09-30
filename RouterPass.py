@@ -29,6 +29,9 @@
 #REQUIREMENTS before you run the program- 
 #- Firefox web browser
 #pynput  check the web for instructions
+#firejail
+
+#Preferable to harden the system before running this program
 
 import	random
 import time
