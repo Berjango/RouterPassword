@@ -94,9 +94,13 @@ if len(password)<4 or len(password)>50:
 		password="whatever345"
 
 devnull = open(os.devnull, 'wb')
-Popen(['firefox', "http://"+routerip,"-safe-mode"], stdout=devnull, stderr=devnull)
+Popen(['firejail','firefox', "http://"+routerip,"-safe-mode"], stdout=devnull, stderr=devnull)
 
-time.sleep(30)
+time.sleep(20)
+keyboard.press(Key.enter)
+keyboard.release(Key.enter)
+time.sleep(20)
+
 	
 loop=0
 while 1:

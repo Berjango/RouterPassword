@@ -4,5 +4,6 @@
 
 
 sudo apt update
-sudo apt install python3-pip
+sudo apt install python3-pip -y
+sudo apt install firejail firejail-profiles -y
 pip install pynput
