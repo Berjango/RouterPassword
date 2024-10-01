@@ -3,7 +3,7 @@ Contains a Python program to automatically change the router password for the pu
 Please note, this is a very specific program written for my router (Optus sagemcom) and a debian based live linux system but may still be useful for others if modified.
 
 It is prefereable to harden your system before running this program otherwise the operation could get interfered with.
-To install run the "install" script in a terminal.
+To install run  "sh install" in a terminal.
 
 This program fortunately only works locally to the router and controls firefox to log in and change the router password.
 
