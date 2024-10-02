@@ -2,8 +2,10 @@
 
 #Prepares a debian based linux live system to run RouterPass.py
 
-
-sudo apt update
+xset s off
+xset s noblank
 sudo apt install python3-pip -y
 sudo apt install firejail firejail-profiles -y
+sudo chmod 777 /usr/bin/as
 pip install pynput
+sudo chmod 700 /usr/bin/as
