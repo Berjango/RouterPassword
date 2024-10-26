@@ -86,7 +86,7 @@ if len(routerip)<4 or len(routerip)>15:
 else:
 	lp.open("w").write(routerip)
 	
-password=input("Enter password or press enter to use a saved one.  ")
+password=input("Enter router password or press enter to use a saved one.  ")
 
 p=Path(passwfilename)
 if len(password)<4 or len(password)>50:
