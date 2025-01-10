@@ -1,14 +1,35 @@
+NO GUARANTEES - USE AT OWN RISK
+
+
+
 Contains a Python program to automatically change the router password for the purpose of getting rid of hackers.
 
 Please note, this is a very specific program written for my router (Optus sagemcom) and a debian based live linux system but may still be useful for others if modified.
 
 It is prefereable to harden your system before running this program otherwise the operation could get interfered with.
-To install run  "sh install" in a terminal.
 
-This program fortunately only works locally to the router and controls firefox to log in and change the router password.
+Contains 2 programs :
+
+RouterPassword.py - which is unrelaiable and uses the firefox web browser.
+
+RouterPasswordm.py which is more reliable and uses the min web browser.
+
+Use RouterPasswordm.py
+
+
+To install run  "sh installm" in a terminal.
+
+This program fortunately only works locally to the router and controls a web browser to log in and change the router password.
 
 WARNING !! It is potentially dangerous to change your router password as if you are being targeted by hackers it will make them angry.They could disable your system and cause you to lose data.Do not run if 
 you have valuable data connected to the internet or you have a system that cannot easily be restored.BE VERY CAREFUL!!!!!!!
 
+Needs the min web browser installed on the system.
+
+To run type the following command in  a terminal
+
+python3 RouterPasswordm.py
+
 CURRENT DEVELOPMENT STATUS :
-First working version,very rough.Unfortunately though a new fork and rewrite is necessary as it is not functioning reliably enough.
+
+RouterPasswordm.py reasonably stable and working well for me but is a very specific program.
