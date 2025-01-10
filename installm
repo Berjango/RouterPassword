@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#Prepares a debian based linux live system to run RouterPass.py
+
+xset s off
+xset s noblank
+sudo apt update
+sudo apt install python3-pip -y
+sudo chmod 777 /usr/bin/as
+pip install pynput
+sudo chmod 700 /usr/bin/as
