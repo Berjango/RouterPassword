@@ -30,12 +30,12 @@
 #designed for the following router/modem - OPTUS SAGEMCOM
 
 
-#REQUIREMENTS 
+#REQUIREMENTS before you run the program- 
+#- min web browser
+#pynput  check the web for instructions
 
-#type "sh installm" and it should be taken care of
 
-#Please note ,this program takes over the whole computer and no other programs can be run.So best to use an old laptop or something similar
-#which is dedicated to this task.
+#Preferable to harden the system before running this program
 
 import	random
 import time

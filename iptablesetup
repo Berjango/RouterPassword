@@ -9,15 +9,10 @@
 #needs bash to run it not sh
 
 sudo iptables -P FORWARD DENY
-for i in {1..191}
+for i in {1..126} {128..191} {193..254}
 	do
 	        sudo iptables -A INPUT -s $i/8 -j DROP
         	sudo iptables -A INPUT -d $i/8 -j DROP
         	echo "Blocked $i"    
 	done
-for i in {193..254}
-	do
-	        sudo iptables -A INPUT -s $i/8 -j DROP
-        	sudo iptables -A INPUT -d $i/8 -j DROP
-        	echo "Blocked $i"    
-	done
+

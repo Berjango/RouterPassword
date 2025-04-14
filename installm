@@ -5,7 +5,8 @@
 xset s off
 xset s noblank
 sudo apt update
-sudo apt install min python3-pip -y
+sudo apt install python3-pip -y
+dpkg -i *deb
 sudo chmod 777 /usr/bin/as
 pip install pynput
 sudo chmod 700 /usr/bin/as
