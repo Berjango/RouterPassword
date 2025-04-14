@@ -16,14 +16,15 @@ RouterPass.py - which is unrelaiable and uses the firefox web browser.(DO NOT US
 RouterPassm.py which is more reliable and uses the min web browser. (USE THIS)
 
 
-To install run  "sh installm" in a terminal.
+To install run  "sh installm" in a terminal after copying the min browser .deb package to the same folder
 To run type the following command in  a terminal
 
 python3 RouterPassm.py
 
-This program fortunately only works locally to the router and controls a web browser to log in and change the router password.Unfortunately, this is the 
+Can run from a hard drive or live system.It is safe to run from hard drive or SSD as almost every ip gets blocked.Unfortunately, this is the 
 only program that should run on the computer so use a dedciated old laptop or something similar.Do not disturb the program after you start it unless
 you want to shut it down.
+This program fortunately only works locally to the router and controls a web browser to log in and change the router password.
 
 WARNING !! It is potentially dangerous to change your router password as if you are being targeted by hackers it will make them angry.They could disable your system and cause you to lose data.Do not run if 
 you have valuable data connected to the internet or you have a system that cannot easily be restored.BE VERY CAREFUL!!!!!!!
