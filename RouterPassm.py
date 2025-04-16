@@ -43,6 +43,7 @@ from pathlib import Path
 import os
 from subprocess import Popen
 
+minlogfile=os.getenv("HOME")+"/.config/Min/Session Storage/000003.log"
 
 from pynput.keyboard import Key, Controller
 
@@ -56,7 +57,6 @@ passwfilename="routerpassword.txt"
 lastipfile="lastip.txt"
 
 passwordlength=20
-
 
 def quitbrowserkeys():
     """does keypresses to quit min browser """
@@ -78,6 +78,11 @@ def	pseudorandompassword (plength):
 		for i in range(plength):
 			ret+=chr(ord("a")+random.randint(1,26))
 		return(ret)
+def logout():
+	presstab(3)
+	keyboard.press(Key.enter)
+	keyboard.release(Key.enter)
+	time.sleep(10)
 
 
 print("This program is specific to my router/modem and may not be useful for anyone else.It is not advisable to run this unless you already have a very secure system.Do not run if you have valuable data connected to the internet.This will make hackers angry if they are targetting you  and they could disable your system causing you to lose data.  BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!!")
@@ -106,15 +111,13 @@ if len(password)<4 or len(password)>50:
 
 	except:
 		password="whatever345"
-#False start min first to get it in cache
-print("False starting min for preparation,please wait for it to load\n")
+#Get min in cache
 devnull = open(os.devnull, 'wb')
-Popen(['min'], stdout=devnull, stderr=devnull)
-
-time.sleep(40)
-quitbrowserkeys()
-time.sleep(15)
-print("Starting min properly\n")
+if	not os.path.isfile(minlogfile):
+	print("Getting min into the cache,please wait about a minute.")
+	Popen(['min'], stdout=devnull, stderr=devnull)
+	time.sleep(40)
+print("Starting min .If not logged into router there will be an iniital errot,just wait for another login attempt.\n")
 Popen(['min', "http://"+routerip], stdout=devnull, stderr=devnull)
 
 time.sleep(20)
@@ -125,8 +128,9 @@ loop=0
 while 1:
 
 	newpassword=pseudorandompassword(passwordlength)
-	print( "New password is ",newpassword)
-	
+	print( "Candidate new password is ",newpassword)
+
+	logout()#logout if accidentally logged in	
 	keyboard.type('optus')			#log in to router here
 	presstab(1)
 	keyboard.type(password)
