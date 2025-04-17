@@ -6,7 +6,6 @@ xset s off
 xset s noblank
 sudo apt update
 sudo apt install python3-pip -y
-sudo apt install vmtouch -y
 sudo dpkg -i *deb
 sudo chmod 777 /usr/bin/as
 pip install pynput

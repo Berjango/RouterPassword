@@ -16,8 +16,7 @@
 
 #This program is specific to my router/modem and is designed for linux and may not run on another OS and almost certainly not on another type of router
 
-#Designed for a live system running from DVD or USB,not so useful for a HDD or SSD based system
-
+#This program is the main program that should be running on a computer and the computer should not be used after running the program.Maybe us a dedicated old laptop.
 #It is not advisable to run this unless you already have a very secure system.Do not run if you have valuable data connected to the internet.This will make hackers angry if they are targetting you 
 # and they could disable your system causing you to lose data.  BE EXTREMELY CAREFUL!!!
 
@@ -35,28 +34,25 @@
 #pynput  check the web for instructions
 
 
-#Preferable to harden the system before running this program
-
 import	random
 import time
 from pathlib import Path
 import os
 from subprocess import Popen
-
-minlogfile=os.getenv("HOME")+"/.config/Min/Session Storage/000003.log"
-
 from pynput.keyboard import Key, Controller
 
 
 keyboard=Controller()
+
+
 defaultip="192.168.0.1"
-
+minlogfile=os.getenv("HOME")+"/.config/Min/Session Storage/000003.log"
 delay=30
-
 passwfilename="routerpassword.txt"
 lastipfile="lastip.txt"
-
 passwordlength=20
+
+
 
 def quitbrowserkeys():
     """does keypresses to quit min browser """
@@ -79,6 +75,7 @@ def	pseudorandompassword (plength):
 			ret+=chr(ord("a")+random.randint(1,26))
 		return(ret)
 def logout():
+	"""logout of router"""
 	presstab(3)
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
@@ -117,12 +114,13 @@ if	not os.path.isfile(minlogfile):
 	print("Getting min into the cache,please wait about a minute.")
 	Popen(['min'], stdout=devnull, stderr=devnull)
 	time.sleep(40)
-print("Starting min .If not logged into router there will be an iniital errot,just wait for another login attempt.\n")
+print("Starting min .If not logged into router there will be an iniital false login error,just wait for a real login attempt.\n")
 Popen(['min', "http://"+routerip], stdout=devnull, stderr=devnull)
 
 time.sleep(20)
     
 
+logout()#logout of router if accidentally logged in	
 	
 loop=0
 while 1:
@@ -130,7 +128,6 @@ while 1:
 	newpassword=pseudorandompassword(passwordlength)
 	print( "Candidate new password is ",newpassword)
 
-	logout()#logout if accidentally logged in	
 	keyboard.type('optus')			#log in to router here
 	presstab(1)
 	keyboard.type(password)
