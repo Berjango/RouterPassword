@@ -35,6 +35,7 @@
 
 
 import	random
+import	re
 import time
 from pathlib import Path
 import os
@@ -52,6 +53,36 @@ passwfilename="routerpassword.txt"
 lastipfile="lastip.txt"
 passwordlength=20
 
+def savewebpage(webpagename):
+	'''Saves the current webpage with the passed name'''
+	keyboard.press(Key.ctrl)
+	keyboard.type("s")
+	keyboard.release(Key.ctrl)
+	time.sleep(2.0)
+	keyboard.type(webpagename)
+	time.sleep(1)
+	keyboard.press(Key.enter)
+	keyboard.release(Key.enter)
+def	alarm():
+	'''Endless loop alarm'''
+	while(1):
+		print("\a")
+		print("Different webpage detected or fatal error of another kind.Program failure")
+	
+def	checkwebpage(webpagename):
+	'''check modem settings webpage by searching for the word modem in it.If not there then raise alarm'''
+	savewebpage(webpagename)
+	time.sleep(3)
+	try:
+		fp=open(webpagename,"r")
+		data=fp.read()
+		fp.close()
+	except:
+		print("ERROR! Cannot read saved webpage!")
+		alarm()
+	m=re.search("Modem",data)
+	if m.span==[0,0]:
+		alarm()
 
 
 def quitbrowserkeys():
@@ -118,8 +149,8 @@ print("Starting min .If not logged into router there will be an iniital false lo
 Popen(['min', "http://"+routerip], stdout=devnull, stderr=devnull)
 
 time.sleep(20)
-    
-
+savewebpage("/tmp/test.html")
+time.sleep(7)
 logout()#logout of router if accidentally logged in	
 	
 loop=0
@@ -143,6 +174,7 @@ while 1:
 	
 	time.sleep(10)
 	print("In modem settings.")
+	checkwebpage("/tmp/temp.html")
 
 	presstab(17)
 	keyboard.press(Key.enter)		#Navigate to password section
