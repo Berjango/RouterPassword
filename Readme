@@ -4,7 +4,8 @@ NO GUARANTEES - USE AT OWN RISK
 
 Contains a Python program to automatically change the router password for the purpose of getting rid of hackers.
 This program has succesfully run for several hours but at other times
-failed in a few minutes so some monitoring is required. Has dramatically improved my computer security with zero side effects with basic use.
+failed in a few minutes so some monitoring is required. Has dramatically improved my computer security with zero side effects with basic use.Admittedly there could be some problems for some use cases.
+Inherently an unstable program as it controls a web browser and is time dependent.There is an alarm feature that triggers an audible alarm if things go wrong.
 
 Please note, this is a very specific program written for my router (Optus sagemcom) and a debian based live linux system but may still be useful for others if modified.
 
@@ -20,6 +21,9 @@ To install run  "sh installm" in a terminal after copying the min browser .deb p
 To run type the following command in  a terminal
 
 python3 RouterPassm.py
+
+preferable to run a firewall program at the same time and essential if running from a hard drive or SSD. None of the well known linux software firewall programs have worked for me.
+I use my perl based experimentalfirewall.pl program which can be found in the hardenlinux project of mine.Although ,very basic,buggy,faulty,some would say stupid,it works better for me than the well known ones.
 
 Can run from a hard drive or live system.It is safe to run from hard drive or SSD as almost every ip gets blocked.Unfortunately, this is the 
 only program that should run on the computer so use a dedciated old laptop or something similar.Do not disturb the program after you start it unless
