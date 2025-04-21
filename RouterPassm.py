@@ -63,10 +63,11 @@ def savewebpage(webpagename):
 	time.sleep(1)
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
+
 def	alarm():
 	'''Endless loop alarm'''
 	while(1):
-		print("\a")
+		Popen(['espeak','Program error!'], stdout=devnull, stderr=devnull)
 		print("Different webpage detected or fatal error of another kind.Program failure")
 	
 def	checkwebpage(webpagename):
@@ -81,7 +82,7 @@ def	checkwebpage(webpagename):
 		print("ERROR! Cannot read saved webpage!")
 		alarm()
 	m=re.search("Modem",data)
-	if m.span==[0,0]:
+	if not m:
 		alarm()
 
 
@@ -112,7 +113,8 @@ def logout():
 	keyboard.release(Key.enter)
 	time.sleep(10)
 
-
+devnull = open(os.devnull, 'wb')
+Popen(['espeak','Starting program'], stdout=devnull, stderr=devnull)
 print("This program is specific to my router/modem and may not be useful for anyone else.It is not advisable to run this unless you already have a very secure system.Do not run if you have valuable data connected to the internet.This will make hackers angry if they are targetting you  and they could disable your system causing you to lose data.  BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!! BE EXTREMELY CAREFUL!!!")
 
 
@@ -140,8 +142,8 @@ if len(password)<4 or len(password)>50:
 	except:
 		password="whatever345"
 #Get min in cache
-devnull = open(os.devnull, 'wb')
-if	not os.path.isfile(minlogfile):
+programhasrun=os.path.isfile(minlogfile)
+if	not programhasrun:
 	print("Getting min into the cache,please wait about a minute.")
 	Popen(['min'], stdout=devnull, stderr=devnull)
 	time.sleep(40)
@@ -149,7 +151,8 @@ print("Starting min .If not logged into router there will be an iniital false lo
 Popen(['min', "http://"+routerip], stdout=devnull, stderr=devnull)
 
 time.sleep(20)
-savewebpage("/tmp/test.html")
+if not programhasrun:
+	savewebpage("/tmp/test.html")
 time.sleep(7)
 logout()#logout of router if accidentally logged in	
 	
